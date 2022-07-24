@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:32:41 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:15:00 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/24 12:34:54 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move(t_data *data, int y, int x, t_point p)
 	if (data->map[p.y + y][p.x + x] != '1')
 	{
 		data->map[p.y][p.x] = '0';
-		data->map[p.y + y][p.x + x] = 'N';
+		data->map[p.y + y][p.x + x] = data->p_direction;
 		render(data);
 	}
 }

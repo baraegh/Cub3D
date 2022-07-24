@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/24 11:50:42 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/24 12:35:52 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,11 @@ typedef struct s_data
 	void		*mlx_win;
 	char		**map;
 	t_img		img;
+	char		p_direction;
 
 	char	**player_matrix;
 
 	t_size	win;
-
-	int py;
-	int px;
 } t_data;
 
 #endif

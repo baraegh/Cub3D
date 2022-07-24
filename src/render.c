@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:47:04 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:18:18 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/24 12:34:49 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ void	init_win(t_data *data)
 							&data->img.line_length, &data->img.endian);
 	data->img.width = x * 30;
 	data->img.height = y * 30;
+}
+
+void	set_player_direction(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'W' || data->map[y][x] == 'S'
+				|| data->map[y][x] == 'N' || data->map[y][x] == 'E')
+				data->p_direction = data->map[y][x];
+			x++;
+		}
+		y++;
+	}
 }
 
 void	put_imgs(t_data *data, t_rect rect)
@@ -81,6 +101,7 @@ void	render(t_data *data)
 void	display(t_data *data)
 {
 	init_win(data);
+	set_player_direction(data);
 	render(data);
 	hooks(data);
 	mlx_loop(data->mlx);
