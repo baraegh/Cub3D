@@ -6,53 +6,11 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:47:04 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:34:49 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:37:09 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/header.h"
-
-void	init_win(t_data *data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		while (data->map[0][x])
-			x++;
-		y++;
-	}
-	data->mlx = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx, x * 30, y * 30, "Cub3D");
-	data->img.img = mlx_new_image(data->mlx, x * 30, y * 30);
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
-							&data->img.line_length, &data->img.endian);
-	data->img.width = x * 30;
-	data->img.height = y * 30;
-}
-
-void	set_player_direction(t_data *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'W' || data->map[y][x] == 'S'
-				|| data->map[y][x] == 'N' || data->map[y][x] == 'E')
-				data->p_direction = data->map[y][x];
-			x++;
-		}
-		y++;
-	}
-}
 
 void	put_imgs(t_data *data, t_rect rect)
 {
@@ -72,6 +30,42 @@ void	put_imgs(t_data *data, t_rect rect)
 	}
 }
 
+void	set_ray_rotate_angle(t_data *data)
+{
+	if (data->p.first_direction == 'N')
+		data->p.rotate_angle = 3 * M_PI / 2;
+	else if (data->p.first_direction == 'S')
+		data->p.rotate_angle = M_PI / 2;
+	else if (data->p.first_direction == 'W')
+		data->p.rotate_angle = M_PI;
+	else if (data->p.first_direction == 'E')
+		data->p.rotate_angle = 0;
+	data->p.flag_angle_set = 1;
+}
+
+void	draw_direction_ray(t_data *data)
+{
+	data->ray.p0.x = data->p.p.x + TILE / 4;
+	data->ray.p0.y = data->p.p.y + TILE / 4;
+	if (!data->p.flag_angle_set)
+		set_ray_rotate_angle(data);
+	data->ray.p1.x = data->ray.p0.x + cos(data->p.rotate_angle) * TILE;
+	data->ray.p1.y =  data->ray.p0.y + sin(data->p.rotate_angle) * TILE;
+	data->ray.color = RAY_COLOR;
+	cast_rays(data);
+	dda(data, data->ray);
+}
+
+
+void	render_player(t_data *data)
+{
+	data->p.size = TILE / 2;
+	put_imgs(data,
+		(t_rect){data->p.p.x, data->p.p.y,
+			PLAYER_COLOR, data->p.size, data->p.size});
+	draw_direction_ray(data);
+}
+
 void	render(t_data *data)
 {
 	int	x;
@@ -84,16 +78,24 @@ void	render(t_data *data)
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == '1')
-				put_imgs(data,(t_rect){x * 30, y * 30, WALL_COLOR, 30, 30});
+				put_imgs(data,(t_rect){x * TILE, y * TILE, WALL_COLOR, TILE, TILE});
 			else if (data->map[y][x] == '0')
-				put_imgs(data, (t_rect){x * 30, y * 30, PLAT_COLOR, 30, 30});
+				put_imgs(data, (t_rect){x * TILE, y * TILE, PLAT_COLOR, TILE, TILE});
 			else if (data->map[y][x] == 'W' || data->map[y][x] == 'S'
 				|| data->map[y][x] == 'N' || data->map[y][x] == 'E')
-				put_imgs(data, (t_rect){x * 30, y * 30, PLAYER_COLOR, 30, 30});
+			{
+				data->p.p.x = x * TILE + TILE / 2;
+				data->p.p.y = y * TILE + TILE / 2;
+				put_imgs(data, (t_rect){x * TILE, y * TILE,
+					PLAT_COLOR, TILE, TILE});
+				data->p.first_direction = data->map[y][x];
+				data->map[y][x] = '0';
+			}
 			x++; 
 		}
 		y++;
 	}
+	render_player(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win,
 		data->img.img, 0, 0);
 }
@@ -101,7 +103,9 @@ void	render(t_data *data)
 void	display(t_data *data)
 {
 	init_win(data);
-	set_player_direction(data);
+	init_img(data);
+	init_player(data);
+	// set_player_direction(data);
 	render(data);
 	hooks(data);
 	mlx_loop(data->mlx);

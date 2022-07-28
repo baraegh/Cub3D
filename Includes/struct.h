@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:35:52 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:13:04 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_size
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 } t_point;
 
 typedef	struct s_rect
@@ -55,17 +55,35 @@ typedef	struct s_rect
 	float	height;
 }	t_rect;
 
+typedef struct s_ray
+{
+	t_point p0;
+	t_point p1;
+	int		color;
+} t_ray;
+
+typedef struct s_player
+{
+	t_point	p;
+	int		size;
+	char	first_direction;
+	int		turn_direction;
+	float	rotate_angle;
+	float	move_speed;
+	float	rotate_speed;
+	int		flag_angle_set;
+} t_player;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
 	t_img		img;
-	char		p_direction;
-
-	char	**player_matrix;
-
-	t_size	win;
+	t_player	p;
+	int			tile;
+	int			num_rays;
+	t_ray		ray;
 } t_data;
 
 #endif
