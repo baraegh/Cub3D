@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 12:04:56 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/28 17:39:30 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:58:04 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define WALL_COLOR 0x7F5283
 # define RAY_COLOR 0xA6D1E6//0x293462
 # define CASTING_RAYS_COLOR 0xCA4E79
+# define COLOR 0x7A4069
 # define FOV_ANGLE 60 * (M_PI / 180)
 # define WALL_STRIP_WIDTH  1
 

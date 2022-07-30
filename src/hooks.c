@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:32:41 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/28 17:42:44 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:38:01 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	is_a_wall(t_data *data, float x, float y)
 {
-	printf("x: %f\n", (x + data->p.size));
 	if (data->map[(int)y / TILE][(int)x / TILE] == '1' ||
 		data->map[(int)y / TILE][(int)(x + data->p.size) / TILE] == '1' ||
 		data->map[(int)(y + data->p.size) / TILE][(int)x / TILE] == '1' ||

@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:21:06 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/28 17:15:03 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/29 19:50:15 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_player(t_data *data)
 {
 	data->p.turn_direction = 0;
 	data->p.rotate_angle = 0;
-	data->p.move_speed = 1.5;
+	data->p.move_speed = 4.5;
 	data->p.rotate_speed = 4 * (M_PI / 180);
 	data->p.flag_angle_set = 0;
 }

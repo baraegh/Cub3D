@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/28 17:13:04 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/29 11:55:06 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@ typedef struct s_ray
 	t_point p1;
 	int		color;
 } t_ray;
+
+typedef struct s_cast_ray
+{
+	int	wall_hit_x;
+	int	wall_hit_y;
+	int	distance;
+	int	is_facing_down;
+	int	is_facing_up;
+	int	is_facing_left;
+	int	is_facing_right;
+} t_cast_ray;
 
 typedef struct s_player
 {

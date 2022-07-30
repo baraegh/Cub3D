@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:47:04 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/28 17:37:09 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/29 12:19:44 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	draw_direction_ray(t_data *data)
 	cast_rays(data);
 	dda(data, data->ray);
 }
-
 
 void	render_player(t_data *data)
 {
