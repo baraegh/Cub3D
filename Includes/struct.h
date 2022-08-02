@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/29 11:55:06 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:54:57 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,26 @@ typedef struct s_player
 	float	rotate_speed;
 	int		flag_angle_set;
 } t_player;
+
+typedef struct s_par
+{
+	float	x_intercept;
+	float	y_intercept;
+	float	x_step;
+	float	y_step;
+	float	next_horz_touch_x; 
+	float	next_horz_touch_y;
+	float	next_vert_touch_x; 
+	float	next_vert_touch_y;
+	int		horz_wall_hit_x;
+	int		horz_wall_hit_y;
+	int		vert_wall_hit_x;
+	int		vert_wall_hit_y;
+	int		found_horz_wall_hit;
+	int		found_vert_wall_hit;
+	float	horz_distance;
+	float	vert_distance;
+} t_par;
 
 typedef struct s_data
 {

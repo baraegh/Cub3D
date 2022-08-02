@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 12:04:56 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/29 19:58:04 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:25:26 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@
 # include "struct.h"
 
 # define WIN_WIDTH 1024
-# define WIN_HEIGHT 512
-# define TILE 50
+# define WIN_HEIGHT 540
+# define TILE 32
 # define PLAYER_COLOR 0xA6D1E6
 # define PLAT_COLOR 0xFEFBF6
 # define WALL_COLOR 0x7F5283
-# define RAY_COLOR 0xA6D1E6//0x293462
+# define RAY_COLOR 0xA6D1E6
 # define CASTING_RAYS_COLOR 0xCA4E79
-# define COLOR 0x7A4069
 # define FOV_ANGLE 60 * (M_PI / 180)
 # define WALL_STRIP_WIDTH  1
+# define MAP_SCALE 0.3
+# define COLOR 0xFFC18E
 
 char	**check_map(char *str);
 char	*get_next_line(int fd);

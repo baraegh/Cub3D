@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:47:04 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/29 12:19:44 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:17:49 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,22 @@ void	draw_direction_ray(t_data *data)
 	data->ray.p0.y = data->p.p.y + TILE / 4;
 	if (!data->p.flag_angle_set)
 		set_ray_rotate_angle(data);
-	data->ray.p1.x = data->ray.p0.x + cos(data->p.rotate_angle) * TILE;
-	data->ray.p1.y =  data->ray.p0.y + sin(data->p.rotate_angle) * TILE;
-	data->ray.color = RAY_COLOR;
+	data->ray.p1.x = data->ray.p0.x + cos(data->p.rotate_angle) * TILE / 2;
+	data->ray.p1.y =  data->ray.p0.y + sin(data->p.rotate_angle) * TILE / 2;
 	cast_rays(data);
-	dda(data, data->ray);
+	dda(data, (t_ray){
+		(t_point){data->ray.p0.x * MAP_SCALE, data->ray.p0.y * MAP_SCALE},
+		(t_point){data->ray.p1.x * MAP_SCALE, data->ray.p1.y * MAP_SCALE},
+		RAY_COLOR
+	});
 }
 
 void	render_player(t_data *data)
 {
 	data->p.size = TILE / 2;
 	put_imgs(data,
-		(t_rect){data->p.p.x, data->p.p.y,
-			PLAYER_COLOR, data->p.size, data->p.size});
+		(t_rect){data->p.p.x * MAP_SCALE, data->p.p.y * MAP_SCALE,
+			PLAYER_COLOR, data->p.size * MAP_SCALE, data->p.size * MAP_SCALE});
 	draw_direction_ray(data);
 }
 
@@ -77,16 +80,20 @@ void	render(t_data *data)
 		while (data->map[y][x])
 		{
 			if (data->map[y][x] == '1')
-				put_imgs(data,(t_rect){x * TILE, y * TILE, WALL_COLOR, TILE, TILE});
+				put_imgs(data,(t_rect){x * TILE * MAP_SCALE,
+					y * TILE * MAP_SCALE, WALL_COLOR,
+					TILE * MAP_SCALE, TILE * MAP_SCALE});
 			else if (data->map[y][x] == '0')
-				put_imgs(data, (t_rect){x * TILE, y * TILE, PLAT_COLOR, TILE, TILE});
+				put_imgs(data,
+					(t_rect){x * TILE * MAP_SCALE, y * TILE * MAP_SCALE,
+						PLAT_COLOR, TILE * MAP_SCALE, TILE * MAP_SCALE});
 			else if (data->map[y][x] == 'W' || data->map[y][x] == 'S'
 				|| data->map[y][x] == 'N' || data->map[y][x] == 'E')
 			{
-				data->p.p.x = x * TILE + TILE / 2;
-				data->p.p.y = y * TILE + TILE / 2;
-				put_imgs(data, (t_rect){x * TILE, y * TILE,
-					PLAT_COLOR, TILE, TILE});
+				data->p.p.x = x * TILE + TILE / 4;
+				data->p.p.y = y * TILE + TILE / 4;
+				put_imgs(data, (t_rect){x * TILE * MAP_SCALE, y * TILE * MAP_SCALE,
+					PLAT_COLOR, TILE * MAP_SCALE, TILE * MAP_SCALE});
 				data->p.first_direction = data->map[y][x];
 				data->map[y][x] = '0';
 			}
@@ -104,7 +111,6 @@ void	display(t_data *data)
 	init_win(data);
 	init_img(data);
 	init_player(data);
-	// set_player_direction(data);
 	render(data);
 	hooks(data);
 	mlx_loop(data->mlx);

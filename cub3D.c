@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 12:14:16 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/07/24 12:18:49 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:57:26 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 	if (av[1])
 		check_cub(av[1]);
 	data.map = check_map(av[1]);
-	// cub3D without parsing the map and checking the errors
+	// cub3D without parsing the map and checking the map's errors
 	if (ac == 2)
 	{
 		display(&data);
