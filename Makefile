@@ -6,7 +6,7 @@
 #    By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 12:07:06 by eel-ghan          #+#    #+#              #
-#    Updated: 2022/07/28 17:31:38 by eel-ghan         ###   ########.fr        #
+#    Updated: 2022/08/02 17:39:13 by eel-ghan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MLX =  -lmlx -framework OpenGL -framework AppKit
 
 FILES = cub3D.c src/check_map.c src/get_next_line.c src/render.c \
 		src/hooks.c src/img_pix_put.c src/draw_line_algo.c src/init.c\
-		src/raycasting.c \
+		src/raycasting.c src/render_walls.c\
 
 LIBFT = src/libft/libft.a
 

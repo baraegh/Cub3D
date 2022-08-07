@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/01 14:54:57 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/05 14:34:59 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ typedef struct s_cast_ray
 {
 	int	wall_hit_x;
 	int	wall_hit_y;
-	int	distance;
+	float	distance;
 	int	is_facing_down;
 	int	is_facing_up;
 	int	is_facing_left;
 	int	is_facing_right;
+	float	angle;
 } t_cast_ray;
 
 typedef struct s_player
@@ -110,7 +111,8 @@ typedef struct s_data
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
-	t_img		img;
+	t_img		map_img;
+	t_img		walls_img;
 	t_player	p;
 	int			tile;
 	int			num_rays;

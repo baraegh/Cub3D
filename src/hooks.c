@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:32:41 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/02 16:51:21 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/07 17:05:23 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	move(t_data *data, int y, int x)
 	{
 		data->p.p.x = p.x;
 		data->p.p.y = p.y;
+		mlx_destroy_image(data->mlx, data->map_img.img);
+		init_map_img(data);
 		render(data);
 	}
 	data->p.turn_direction = 0;
@@ -54,8 +56,8 @@ void	move(t_data *data, int y, int x)
 void	rotate_line(t_data *data)
 {
 	data->p.rotate_angle += data->p.turn_direction * data->p.rotate_speed;
-	mlx_destroy_image(data->mlx, data->img.img);
-	init_img(data);
+	mlx_destroy_image(data->mlx, data->map_img.img);
+	init_map_img(data);
 	render(data);
 	data->p.turn_direction = 0;
 }
@@ -94,6 +96,7 @@ int	key_hook(int key_code, t_data *data)
 
 void	hooks(t_data *data)
 {
-	mlx_key_hook(data->mlx_win, key_hook, data);
+	// mlx_key_hook(data->mlx_win, key_hook, data);
+	mlx_hook(data->mlx_win, 2, 0, key_hook, data);
 	mlx_hook(data->mlx_win, EVENT_CLOSE, 0, &close_window, &data);
 }
