@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/05 14:34:59 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:24:16 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,22 @@ typedef struct s_ray
 
 typedef struct s_cast_ray
 {
-	int	wall_hit_x;
-	int	wall_hit_y;
+	t_point the_hit_point;
 	float	distance;
-	int	is_facing_down;
-	int	is_facing_up;
-	int	is_facing_left;
-	int	is_facing_right;
+	int		is_facing_down;
+	int		is_facing_up;
+	int		is_facing_left;
+	int		is_facing_right;
+	int		is_vert_hit;
 	float	angle;
+	int		color;
 } t_cast_ray;
 
 typedef struct s_player
 {
 	t_point	p;
+	t_point	step;
+	t_point	move_l_r;
 	int		size;
 	char	first_direction;
 	int		turn_direction;
@@ -84,26 +87,34 @@ typedef struct s_player
 	float	move_speed;
 	float	rotate_speed;
 	int		flag_angle_set;
+	int		open_door;
 } t_player;
 
 typedef struct s_par
 {
 	float	x_intercept;
 	float	y_intercept;
+
 	float	x_step;
 	float	y_step;
-	float	next_horz_touch_x; 
-	float	next_horz_touch_y;
-	float	next_vert_touch_x; 
-	float	next_vert_touch_y;
-	int		horz_wall_hit_x;
-	int		horz_wall_hit_y;
-	int		vert_wall_hit_x;
-	int		vert_wall_hit_y;
-	int		found_horz_wall_hit;
-	int		found_vert_wall_hit;
-	float	horz_distance;
-	float	vert_distance;
+
+	float	next_touch_x; 
+	float	next_touch_y;
+
+	t_point	horz_wall_hit;
+	t_point	vert_wall_hit;
+	t_point	horz_door_hit;
+	t_point	vert_door_hit;
+
+	int		found_a_wall;
+	int		found_a_door;
+	int		there_is_a_door;
+	
+	float	horz_wall_distance;
+	float	vert_wall_distance;
+	float	vert_door_distance;
+	float	horz_door_distance;
+	
 } t_par;
 
 typedef struct s_data
@@ -112,11 +123,19 @@ typedef struct s_data
 	void		*mlx_win;
 	char		**map;
 	t_img		map_img;
-	t_img		walls_img;
+	t_img		no_tex;
+	t_img		so_tex;
+	t_img		we_tex;
+	t_img		ea_tex;
+	t_img		door_tex;
+	t_img		texture;
 	t_player	p;
 	int			tile;
 	int			num_rays;
 	t_ray		ray;
-} t_data;
+	t_point		door_hit;
+	int			door_is_open;
+	time_t		door_opened_time;
+ } t_data;
 
 #endif
