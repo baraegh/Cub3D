@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 12:04:56 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/19 20:24:43 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:45:09 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <mlx.h>
+#include <fcntl.h>
 # include "../src/libft/libft.h"
 # include "mlx_keys.h"
 # include "struct.h"
@@ -42,7 +43,8 @@
 # define CEILLING_COLOR 0x1C6DD0
 # define DOOR_COLOR 0xF29393
 
-char	**check_map(char *str);
+t_data	check_file(char *path);
+int		error(char  *msg, t_pars *pars);
 char	*get_next_line(int fd);
 void	display(t_data *data);
 void	init_win(t_data *data);

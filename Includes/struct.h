@@ -6,28 +6,12 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/22 11:36:52 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:15:16 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
-typedef struct s_pars
-{
-	char	*line;
-	int		i;
-	char	c;
-	int		order_flag;
-	int		fd;
-	int		no_f;
-	int		so_f;
-	int		we_f;
-	int		ea_f;
-	int		floor_f;
-	int		ceilling_f;
-	int		map_height;
-}	t_pars;
 
 typedef struct	s_img {
 	void	*img;
@@ -141,11 +125,24 @@ struct s_door_rays
 	t_door_rays *next;
 };
 
+typedef struct s_color
+{
+	int r;
+	int	g;
+	int	b;
+} t_color;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
+	char		*no_tex_path;
+	char		*so_tex_path;
+	char		*we_tex_path;
+	char		*ea_tex_path;
+	t_color		floor_color;
+	t_color		ceilling_color;
 	t_img		map_img;
 	t_img		no_tex;
 	t_img		so_tex;
@@ -161,5 +158,22 @@ typedef struct s_data
 	int			door_is_open;
 	time_t		door_opened_time;
  } t_data;
+
+ typedef struct s_pars
+{
+	char	*line;
+	int		i;
+	char	c;
+	int		order_flag;
+	int		fd;
+	int		no_f;
+	int		so_f;
+	int		we_f;
+	int		ea_f;
+	int		floor_f;
+	int		ceilling_f;
+	int		map_height;
+	t_data	data;
+}	t_pars;
 
 #endif
