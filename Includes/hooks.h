@@ -1,46 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   hooks.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 12:14:16 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 13:26:04 by eel-ghan         ###   ########.fr       */
+/*   Created: 2022/08/23 15:49:49 by eel-ghan          #+#    #+#             */
+/*   Updated: 2022/08/23 15:53:32 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Includes/header.h"
+#ifndef HOOKS_H
+# define HOOKS_H
 
-void	check_cub(char *str)
-{
-	int		i;
-	char	*cub;
-	int		l;
+void	hooks(t_data *data);
+int		is_a_wall(t_data *data, float x, float y);
+void	move(t_data *data, int y, int x);
+void	rotate_line(t_data *data);
+int		is_a_door(t_data *data, float x, float y);
+int		is_an_open_door(t_data *data, float x, float y);
+void	open_door(t_data *data);
+void	close_door(t_data *data);
+int		ready_to_close_door(t_data *data);
 
-	cub = "buc.";
-	i = 0;
-	while (str[i])
-			i++;
-	i--;
-	l = 0;
-	while (cub[l] != '\0')
-	{
-		if (cub[l] != str[i])
-			error("Invalid file!", NULL);
-		l++;
-		i--;
-	}
-}
-
-int	main(int ac, char **av)
-{
-	t_data	data;
-
-	if (av[1])
-		check_cub(av[1]);
-	data = check_file(av[1]);
-	if (ac == 2)
-		display(&data);
-	return (0);
-}
+#endif
