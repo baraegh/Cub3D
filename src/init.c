@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:21:06 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 16:17:38 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:13:05 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_win(t_data *data)
 	data->mlx_win = mlx_new_window(data->mlx, data->map_img.width,
 			data->map_img.height, "Cub3D");
 	data->num_rays = data->map_img.width / WALL_STRIP_WIDTH;
+	data->render = 1;
 }
 
 void	init_map_img(t_data *data)
@@ -25,7 +26,7 @@ void	init_map_img(t_data *data)
 	data->map_img.img = mlx_new_image(data->mlx,
 			data->map_img.width, data->map_img.height);
 	if (!data->map_img.img)
-		error("Failed toload image!", NULL);
+		error("Failed to load image!", NULL);
 	data->map_img.addr = mlx_get_data_addr(data->map_img.img,
 			&data->map_img.bpp, &data->map_img.line_length,
 			&data->map_img.endian);
@@ -49,10 +50,6 @@ void	init_texture(t_data *data)
 			&data->ea_tex.width, &data->ea_tex.height);
 	if (!data->ea_tex.img)
 		error("Failed to load EA's texture", NULL);
-	data->door_tex.img = mlx_xpm_file_to_image(data->mlx, "./texturs/door.xpm",
-			&data->door_tex.width, &data->door_tex.height);
-	if (!data->door_tex.img)
-		error("Failed to load door's texture", NULL);
 	set_text_addr(data);
 }
 
@@ -65,8 +62,8 @@ void	init_player(t_data *data)
 	data->p.turn_direction = 0;
 	data->p.fov_angle = 60 * (M_PI / 180);
 	data->p.rotate_angle = 0;
-	data->p.move_speed = 5;
-	data->p.rotate_speed = 5 * (M_PI / 180);
+	data->p.move_speed = 3;
+	data->p.rotate_speed = 3 * (M_PI / 180);
 	data->p.flag_angle_set = 0;
 	data->p.size = TILE / 4;
 	init_player_corr(data);

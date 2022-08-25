@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:25:21 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:38:23 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:39:08 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	init_horz_par(t_par *par, t_data *data, t_cast_ray cast_ray)
 {
-	par->there_is_a_door = 0;
 	par->found_a_wall = 0;
-	par->found_a_door = 0;
 	if (cast_ray.is_facing_down)
 		par->y_intercept = (floor(data->ray.p0.y / TILE) * TILE) + TILE;
 	else
@@ -39,7 +37,6 @@ void	init_horz_par(t_par *par, t_data *data, t_cast_ray cast_ray)
 void	init_vert_par(t_par *par, t_data *data, t_cast_ray cast_ray)
 {
 	par->found_a_wall = 0;
-	par->found_a_door = 0;
 	if (cast_ray.is_facing_right)
 		par->x_intercept = (floor(data->ray.p0.x / TILE) * TILE) + TILE;
 	else

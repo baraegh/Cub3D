@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:16:33 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 16:17:42 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:49:55 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,4 @@ void	set_text_addr(t_data *data)
 			&data->we_tex.line_length, &data->we_tex.endian);
 	data->ea_tex.addr = mlx_get_data_addr(data->ea_tex.img, &data->ea_tex.bpp,
 			&data->ea_tex.line_length, &data->ea_tex.endian);
-	data->door_tex.addr = mlx_get_data_addr(data->door_tex.img,
-			&data->door_tex.bpp, &data->door_tex.line_length,
-			&data->door_tex.endian);
 }

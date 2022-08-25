@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 12:04:56 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:19:16 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:07:34 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define WALL_STRIP_WIDTH  1
 # define MAP_SCALE 0.25
 # define BLACK_COLOR 0x000000
-# define DOOR_COLOR 0xF29393
 
 int		error(char *msg, t_pars *pars);
 char	*get_next_line(int fd);

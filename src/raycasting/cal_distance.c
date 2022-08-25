@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:26:57 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:36:41 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:40:51 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ void	cal_horz_distance_util(t_data *data, t_par *par, int y_offset)
 			par->wall_flag = 1;
 		}
 	}
-	else if (data->map[(int)y_offset / TILE][(int)par->next_touch_x
-		/ TILE] == '5')
-	{
-		if (!par->door_flag)
-		{
-			par->found_a_door = 1;
-			par->there_is_a_door = 1;
-			par->horz_door_hit.x = par->next_touch_x;
-			par->horz_door_hit.y = par->next_touch_y;
-			par->door_flag = 1;
-		}
-	}
 }
 
 void	cal_horz_distance(t_par *par, t_cast_ray cast_ray, t_data *data)
@@ -43,7 +31,6 @@ void	cal_horz_distance(t_par *par, t_cast_ray cast_ray, t_data *data)
 	float	y_offset;
 
 	par->wall_flag = 0;
-	par->door_flag = 0;
 	while (par->next_touch_x >= 0 && par->next_touch_x < data->map_img.width
 		&& par->next_touch_y >= 0 && par->next_touch_y < data->map_img.height)
 	{
@@ -70,18 +57,6 @@ void	cal_vert_distance_util(t_data *data, t_par *par, int x_offset)
 			par->wall_flag = 1;
 		}
 	}
-	else if (data->map[(int)(par->next_touch_y / TILE)][(int)x_offset
-		/ TILE] == '5')
-	{
-		if (!par->door_flag)
-		{
-			par->found_a_door = 1;
-			par->there_is_a_door = 1;
-			par->vert_door_hit.x = par->next_touch_x;
-			par->vert_door_hit.y = par->next_touch_y;
-			par->door_flag = 1;
-		}
-	}
 }
 
 void	cal_vert_distance(t_par *par, t_cast_ray cast_ray, t_data *data)
@@ -89,7 +64,6 @@ void	cal_vert_distance(t_par *par, t_cast_ray cast_ray, t_data *data)
 	float	x_offset;
 
 	par->wall_flag = 0;
-	par->door_flag = 0;
 	while (par->next_touch_x >= 0 && par->next_touch_x < data->map_img.width
 		&& par->next_touch_y >= 0 && par->next_touch_y < data->map_img.height)
 	{

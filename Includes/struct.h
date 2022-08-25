@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 11:48:30 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:07:51 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:09:43 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,31 +107,14 @@ typedef struct s_par
 	float	next_touch_y;
 	t_point	horz_wall_hit;
 	t_point	vert_wall_hit;
-	t_point	horz_door_hit;
-	t_point	vert_door_hit;
 	int		found_a_wall;
-	int		found_a_door;
-	int		there_is_a_door;
 	float	horz_wall_distance;
 	float	vert_wall_distance;
-	float	vert_door_distance;
-	float	horz_door_distance;
 	int		wall_flag;
-	int		door_flag;
-	int		is_door_vert_hit;
 	int		is_wall_vert_hit;
-	float	door_distance;
 	float	wall_distance;
 	int		flag;
 }	t_par;
-
-typedef struct s_door_rays	t_door_rays;
-struct s_door_rays
-{
-	t_cast_ray	*cast_ray;
-	int			ray_id;
-	t_door_rays	*next;
-};
 
 typedef struct s_color
 {
@@ -156,14 +139,11 @@ typedef struct s_data
 	t_img		so_tex;
 	t_img		we_tex;
 	t_img		ea_tex;
-	t_img		door_tex;
 	t_img		texture;
+	int			render;
 	t_player	p;
 	int			num_rays;
 	t_ray		ray;
-	t_point		door_hit;
-	int			door_is_open;
-	time_t		door_opened_time;
 }	t_data;
 
 typedef struct s_pars

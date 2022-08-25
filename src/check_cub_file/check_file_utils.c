@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:50:13 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 15:15:58 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:59:23 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	check_color_value(t_pars *pars)
 	char	**str;
 	char	*s;
 	int		i;
+	int		color;
 
 	s = ft_substr(pars->line, pars->i,
 			ft_strlen(pars->line) - pars->i);
@@ -57,23 +58,35 @@ int	check_color_value(t_pars *pars)
 	while (str[i])
 	{
 		if (!check_nbr(str[i]))
-			error("Invalid color", pars);
+			error("Invalid color!", pars);
 		i++;
 	}
 	free(s);
 	pars->order_flag++;
-	return (rgb((t_color){ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2])}));
+	color = rgb((t_color){ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2])});
+	free(str[0]);
+	free(str[1]);
+	free(str[2]);
+	free(str);
+	return (color);
 }
 
 int	check_floor_ceilling_elemt(t_pars *pars)
 {
+	int	color;
+
 	pars_advance(pars);
 	if (pars->c == ' ')
 		skip_space(pars);
 	else
 		error("Invalid identifier", pars);
 	if (nbr_of_comma(pars) == 2)
-		return (check_color_value(pars));
+	{
+		color = check_color_value(pars);
+		if (color == -1)
+			error("Invalid color!", pars);
+		return (color);
+	}
 	else
 		error("Invalid color", pars);
 	return (-1);

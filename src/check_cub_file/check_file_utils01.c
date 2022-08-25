@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:01:57 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:20:22 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:11:43 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,18 @@ char	*char_to_str(char c)
 char	*get_tex_path(t_pars *pars)
 {
 	char	*tex_path;
+	char	*s;
 
 	tex_path = ft_calloc(2, sizeof(char));
 	if (!tex_path)
 		return (NULL);
 	while (pars->c != '\n' && pars->c != '\0')
 	{
-		tex_path = ft_strjoin(tex_path, char_to_str(pars->c));
+		s = char_to_str(pars->c);
+		tex_path = ft_strjoin(tex_path, s);
+		if (!tex_path)
+			return (NULL);
+		free(s);
 		if (!tex_path)
 			return (NULL);
 		pars_advance(pars);

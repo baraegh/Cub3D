@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:32:41 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 15:47:30 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:09:21 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	close_window(t_data *data)
 {
 	(void) data;
+	free_data(data);
 	exit(0);
-	return (1);
+	return (0);
 }
 
 int	key_release(int key_code, t_data *data)
@@ -73,12 +74,12 @@ int	main_loop(t_data *data)
 		move(data, 0, -1);
 	else if (data->p.turn_direction != 0)
 		rotate_line(data);
-	else if (data->p.open_door)
-		open_door(data);
-	else if (ready_to_close_door(data))
-		close_door(data);
-	else
+	if (data->render == 1)
+	{
+		mlx_clear_window(data->mlx, data->mlx_win);
 		render(data);
+		data->render = 0;
+	}
 	return (0);
 }
 
@@ -87,5 +88,5 @@ void	hooks(t_data *data)
 	mlx_hook(data->mlx_win, EVENT_KEY_PRESS, 0, key_press, data);
 	mlx_hook(data->mlx_win, EVENT_KEY_RELEASE, 0, key_release, data);
 	mlx_hook(data->mlx_win, EVENT_CLOSE, 0, &close_window, &data);
-	mlx_loop_hook(data->mlx, main_loop, data);
+	mlx_loop_hook(data->mlx, &main_loop, data);
 }

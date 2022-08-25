@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:35:42 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 17:16:35 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:59:01 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_data	check_file(char *path)
 	}
 	close(pars.fd);
 	if (pars.order_flag == 6 && !pars.data.map)
-		error("Map  element is missing!", NULL);
+		error("Map element is missing!", NULL);
 	else if (pars.order_flag != 6)
 		error("Invalid file!", NULL);
 	return (pars.data);

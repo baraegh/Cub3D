@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:47:49 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/23 15:59:12 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/25 15:17:18 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ void	move(t_data *data, int y, int x)
 		p.x = data->p.p.x - cos(angle) * move_step;
 		p.y = data->p.p.y - sin(angle) * move_step;
 	}
-	if (!is_a_wall(data, p.x, p.y) && !is_a_door(data, p.x, p.y))
+	if (!is_a_wall(data, p.x, p.y))
 	{
 		data->p.p.x = p.x;
 		data->p.p.y = p.y;
-		render(data);
+		data->render = 1;
 	}
 }
 
 void	rotate_line(t_data *data)
 {
 	data->p.rotate_angle += data->p.turn_direction * data->p.rotate_speed;
-	render(data);
+	data->render = 1;
 }
