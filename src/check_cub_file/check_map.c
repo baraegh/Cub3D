@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:06:34 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/25 16:10:41 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:09:34 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*check_map_utils(t_pars *pars, char *map)
 			error("Invalid Map!", pars);
 		i++;
 	}
-	if (pars->line[i - 2] != '1')
+	if (pars->line[i - 2] != '1' && pars->line[i - 2] != ' ')
 		error("The map should be surrounded by walls !", pars);
 	pars->map_height++;
 	return (map);

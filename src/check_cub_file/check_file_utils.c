@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:50:13 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/25 17:59:23 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/08/29 17:16:23 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	check_color_value(t_pars *pars)
 	s = ft_substr(pars->line, pars->i,
 			ft_strlen(pars->line) - pars->i);
 	str = ft_split(s, ',');
+	free(s);
 	if (!str)
 		return (-1);
 	i = 0;
@@ -61,7 +62,8 @@ int	check_color_value(t_pars *pars)
 			error("Invalid color!", pars);
 		i++;
 	}
-	free(s);
+	if (i != 3)
+		error("Invalid color!", pars);
 	pars->order_flag++;
 	color = rgb((t_color){ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2])});
 	free(str[0]);
