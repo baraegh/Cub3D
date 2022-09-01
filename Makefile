@@ -6,7 +6,7 @@
 #    By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/21 12:07:06 by eel-ghan          #+#    #+#              #
-#    Updated: 2022/08/25 18:15:03 by eel-ghan         ###   ########.fr        #
+#    Updated: 2022/09/01 17:02:45 by eel-ghan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ FILES = cub3D.c src/get_next_line.c src/render.c \
 		src/init_utils.c src/raycasting/raycasting.c src/raycasting/cal_distance.c\
 		src/raycasting/raycasting_init.c src/raycasting/set_distance.c\
 		src/raycasting/compare_distances.c src/render_util.c src/error.c src/free_data.c\
+		src/check_cub_file/check_color_util.c 
 
 LIBFT = src/libft/libft.a
 

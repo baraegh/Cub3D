@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:50:13 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/29 17:16:23 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:33:52 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	check_nbr(char *s)
 {
 	int	i;
 
-	if (ft_atoi(s) < 0 || ft_atoi(s) > 255)
+	if (ft_atoi(s) < 0 || ft_atoi(s) > 255
+		|| s[0] == '\n')
 		return (0);
 	i = 0;
 	while (s[i])
@@ -47,7 +48,6 @@ int	check_color_value(t_pars *pars)
 	char	**str;
 	char	*s;
 	int		i;
-	int		color;
 
 	s = ft_substr(pars->line, pars->i,
 			ft_strlen(pars->line) - pars->i);
@@ -64,13 +64,7 @@ int	check_color_value(t_pars *pars)
 	}
 	if (i != 3)
 		error("Invalid color!", pars);
-	pars->order_flag++;
-	color = rgb((t_color){ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2])});
-	free(str[0]);
-	free(str[1]);
-	free(str[2]);
-	free(str);
-	return (color);
+	return (check_color_util(pars, str));
 }
 
 int	check_floor_ceilling_elemt(t_pars *pars)

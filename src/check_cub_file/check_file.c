@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:35:42 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/25 17:59:01 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:57:05 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	skip_space(t_pars *pars)
 {
 	while (pars->line[pars->i]
 		&& pars->line[pars->i] != '\n'
+		&& pars->line[pars->i] != '\0'
 		&& pars->line[pars->i] == ' ')
 		pars->i++;
 	pars->c = pars->line[pars->i];

@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 13:53:13 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/25 17:59:33 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2022/09/01 16:32:21 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	check_first_last_line(t_pars *pars, char **map, int index);
 void	check_walls(int i, int j, t_pars *pars, char **map);
 void	check_first_column(t_pars *pars, char **map);
 void	re_init_pars(t_pars *pars);
+int		check_color_util(t_pars *pars, char **str);
 
 #endif
