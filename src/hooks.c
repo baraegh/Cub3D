@@ -6,7 +6,7 @@
 /*   By: eel-ghan <eel-ghan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:32:41 by eel-ghan          #+#    #+#             */
-/*   Updated: 2022/08/25 18:09:21 by eel-ghan         ###   ########.fr       */
+/*   Updated: 2023/01/15 00:40:35 by eel-ghan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	close_window(t_data *data)
 {
 	(void) data;
-	free_data(data);
 	exit(0);
 	return (0);
 }
